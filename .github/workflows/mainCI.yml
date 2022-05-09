@@ -27,11 +27,7 @@ jobs:
       # Runs a set of commands using the runners shell
     - name: Install dependencies
       run: |
-          pip install -r requirements.txt
-    - name: Lint code
-      run:  |
-          python3 -m flake8
-        
+          pip install -r requirements.txt 
     - name: Tests with pytest
       run: |
           python3 -m pytest -v 
