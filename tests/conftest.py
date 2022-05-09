@@ -42,7 +42,7 @@ def init_database(test_client):
 @pytest.fixture(scope='function')
 def login_default_user(test_client):
     test_client.post('/login',
-                     data=dict(email='patkennedy79@gmail.com', password='FlaskIsAwesome'),
+                     data=dict(email='john45@gmail.com', password='Somepassword'),
                      follow_redirects=True)
 
     yield  

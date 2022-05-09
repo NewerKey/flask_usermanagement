@@ -26,11 +26,11 @@ def test_valid_login_logout(test_client, init_database):
     THEN check the response is valid
     """
     response = test_client.post('/login',
-                                data=dict(email='patkennedy79@gmail.com', password='FlaskIsAwesome'),
+                                data=dict(email='john45@gmail.com', password='Somepassword'),
                                 follow_redirects=True)
     assert response.status_code == 200
-    assert b'Thanks for logging in, patkennedy79@gmail.com!' in response.data
-    assert b'Flask User Management' in response.data
+    assert b'Thanks for logging in, john45@gmail.com!' in response.data
+    assert b'User Management System' in response.data
     assert b'Logout' in response.data
     assert b'Login' not in response.data
     assert b'Register' not in response.data
@@ -56,7 +56,7 @@ def test_invalid_login(test_client, init_database):
     THEN check an error message is returned to the user
     """
     response = test_client.post('/login',
-                                data=dict(email='patkennedy79@gmail.com', password='FlaskIsNotAwesome'),
+                                data=dict(email='john45@gmail.com', password='Otherpassword'),
                                 follow_redirects=True)
     assert response.status_code == 200
     assert b'ERROR! Incorrect login credentials.' in response.data
@@ -73,11 +73,11 @@ def test_login_already_logged_in(test_client, init_database, login_default_user)
     THEN check an error message is returned to the user
     """
     response = test_client.post('/login',
-                                data=dict(email='patkennedy79@gmail.com', password='FlaskIsNotAwesome'),
+                                data=dict(email='john45@gmail.com', password='Otherpassword'),
                                 follow_redirects=True)
     assert response.status_code == 200
     assert b'Already logged in!  Redirecting to your User Profile page...' in response.data
-    assert b'Flask User Management' in response.data
+    assert b'User Management System' in response.data
     assert b'Logout' in response.data
     assert b'Login' not in response.data
     assert b'Register' not in response.data
@@ -123,8 +123,8 @@ def test_invalid_registration(test_client, init_database):
     """
     response = test_client.post('/register',
                                 data=dict(email='pat70@yahoo.com',
-                                          password='Otherpassword',
-                                          confirm='Otherpassword'),   # Does NOT match!
+                                          password='Thepassword',
+                                          confirm='Thepassword2'),   # Does NOT match!
                                 follow_redirects=True)
     assert response.status_code == 200
     assert b'Thanks for registering, pat70@yahoo.com!' not in response.data
@@ -143,20 +143,20 @@ def test_duplicate_registration(test_client, init_database):
     """
     # Register the new account
     test_client.post('/register',
-                     data=dict(email='pkennedy@hey.com',
-                               password='FlaskIsTheBest',
-                               confirm='FlaskIsTheBest'),
+                     data=dict(email='jp20@hotmail.com',
+                               password='Strongpassword',
+                               confirm='Strongpassword'),
                      follow_redirects=True)
     # Try registering with the same email address
     response = test_client.post('/register',
-                                data=dict(email='pkennedy@hey.com',
-                                          password='FlaskIsStillTheBest',
-                                          confirm='FlaskIsStillTheBest'),
+                                data=dict(email='jp20@hotmail.com',
+                                          password='Strongerpassword',
+                                          confirm='Strongerpassword'),
                                 follow_redirects=True)
     assert response.status_code == 200
     assert b'Already registered!  Redirecting to your User Profile page...' in response.data
-    assert b'Thanks for registering, pkennedy@hey.com!' not in response.data
-    assert b'Flask User Management' in response.data
+    assert b'Thanks for registering, jp20@hotmail.com!' not in response.data
+    assert b'User Management System' in response.data
     assert b'Logout' in response.data
     assert b'Login' not in response.data
     assert b'Register' not in response.data

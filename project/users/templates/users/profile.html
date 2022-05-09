@@ -1,10 +1,9 @@
-{% extends "base.html" %}
-
-{% block styling %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile_style.css') }}">
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block styling %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user_profile_style.css') }}"
+/>
+{% endblock %} {% block content %}
 <h1>User Profile</h1>
 
 <div class="card">
@@ -18,7 +17,7 @@
 
 <div class="card">
   <div class="card-heading">
-    <h2>Account Statistics</h2>
+    <h2>Profile History</h2>
   </div>
   <div class="card-body">
     <p>Joined on {{ current_user.registered_on.strftime("%A, %B %d, %Y") }}</p>

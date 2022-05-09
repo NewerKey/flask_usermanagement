@@ -20,9 +20,9 @@ def test_home_page():
         response = test_client.get('/')
         assert response.status_code == 200
         assert b"Welcome to the" in response.data
-        assert b"Flask User Management Example!" in response.data
-        assert b"Need an account?" in response.data
-        assert b"Existing user?" in response.data
+        assert b"User Management System" in response.data
+        assert b"Don't have an account?" in response.data
+        assert b"Already a user?" in response.data
 
 
 def test_home_page_post():
@@ -37,7 +37,7 @@ def test_home_page_post():
     with flask_app.test_client() as test_client:
         response = test_client.post('/')
         assert response.status_code == 405
-        assert b"Flask User Management Example!" not in response.data
+        assert b"User Management System" not in response.data
 
 
 def test_home_page_with_fixture(test_client):
@@ -49,9 +49,9 @@ def test_home_page_with_fixture(test_client):
     response = test_client.get('/')
     assert response.status_code == 200
     assert b"Welcome to the" in response.data
-    assert b"Flask User Management Example!" in response.data
-    assert b"Need an account?" in response.data
-    assert b"Existing user?" in response.data
+    assert b"User Management System" in response.data
+    assert b"Don't have an account?" in response.data
+    assert b"Already a user?" in response.data
 
 
 def test_home_page_post_with_fixture(test_client):
@@ -62,4 +62,4 @@ def test_home_page_post_with_fixture(test_client):
     """
     response = test_client.post('/')
     assert response.status_code == 405
-    assert b"Flask User Management Example!" not in response.data
+    assert b"User Management System" not in response.data

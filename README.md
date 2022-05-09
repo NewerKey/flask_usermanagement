@@ -36,11 +36,11 @@ Run development server to serve the Flask application:
   - itsdangerous: cryptographically sign data
   - Jinja2: templating engine
   - MarkupSafe: escapes characters so text is safe to use in HTML and XML
-  - Werkzeug: set of utilities for creating a Python application that can talk to a WSGI server
+  - Werkzeug: set of utilities that can talk to a WSGI server
 - **pytest**: framework for testing Python projects
 - **Flask-SQLAlchemy** - ORM (Object Relational Mapper) for Flask
 - **Flask-Login** - support for user management (login/logout) in Flask
-- **Flask-WTF** - simplifies forms in Flask
+- **Flask-WTF** - create forms in Flask
 - **flake8** - static analysis tool
 
 This application is written using Python 3.10.
@@ -50,11 +50,11 @@ This application is written using Python 3.10.
 To run all the tests:
 
 ```sh
-(my_env4) $ python -m pytest -v
+(my_env4) $ python3 -m pytest -v
 ```
 
 To check the code coverage of the tests:
 
 ```sh
-(my_env4) $ python -m pytest --cov-report term-missing --cov=project
+(my_env4) $ python3 -m pytest --cov-report term-missing --cov=project
 ```
